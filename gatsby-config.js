@@ -13,15 +13,7 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-react-helmet',
-    {
-      resolve: 'gatsby-mdx',
-      options: {
-        defaultLayouts: {
-          default: require.resolve('./src/components/page-default.js'),
-          components: require.resolve('./src/components/page-docs-template.js'),
-        },
-      },
-    },
+    'gatsby-mdx',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -30,8 +22,6 @@ module.exports = {
       },
     },
     'gatsby-transformer-react-docgen',
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
     'gatsby-plugin-styled-components',
     // {
     //   resolve: `gatsby-transformer-remark`,

@@ -5,7 +5,6 @@
  */
 
 const path = require('path');
-const componentWithMDXScope = require('gatsby-mdx/component-with-mdx-scope');
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -21,16 +20,6 @@ exports.createPages = ({ graphql, actions }) => {
                   frontmatter {
                     name
                     menu
-                    title
-                  }
-                  parent {
-                    ... on File {
-                      name
-                      sourceInstanceName
-                    }
-                  }
-                  code {
-                    scope
                   }
                 }
               }
@@ -47,17 +36,15 @@ exports.createPages = ({ graphql, actions }) => {
           const {
             id,
             frontmatter: { name, menu },
-            code,
           } = node;
 
-          createPage({
-            path: `/${menu.toLowerCase()}/${name.toLowerCase()}`,
-            component: componentWithMDXScope(
-              path.resolve('./src/components/page-docs-template.js'),
-              code.scope
-            ),
-            context: { id, name },
-          });
+          if (!!menu && !!name) {
+            createPage({
+              path: `/${menu.toLowerCase()}/${name.toLowerCase()}`,
+              component: path.resolve('./src/components/page-docs-template.js'),
+              context: { id, name },
+            });
+          }
         });
       })
     );

@@ -20,7 +20,7 @@ const layoutQuery = graphql`
         }
       }
     }
-    components: allMdx {
+    allMdx {
       edges {
         node {
           id
@@ -46,15 +46,22 @@ const Content = styled.div`
   flex-grow: 1;
 `;
 
+// gatsby-mdx is creating some phantom mdx
+// so we need to filter them out
+const filterAllMdx = data =>
+  data.filter(
+    ({ node: { frontmatter } }) => !!frontmatter.menu && !!frontmatter.name
+  );
+
 function Layout({ children }) {
   return (
     <StaticQuery query={layoutQuery}>
-      {({ site, components }) => (
+      {({ site, allMdx }) => (
         <>
           <Header siteTitle={site.siteMetadata.title} />
           <ContentWrapper>
             <Sidebar
-              components={components.edges}
+              components={filterAllMdx(allMdx.edges)}
               sidebarLinks={site.siteMetadata.sidebar.pages}
             />
             <Content>{children}</Content>
