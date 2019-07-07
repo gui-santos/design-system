@@ -6,12 +6,13 @@ import { MDXProvider } from '@mdx-js/react';
 import SEO from './seo';
 import Layout from './layout';
 import Table from './PropsTable/Table';
+import Playground from './Playground';
 
 function PageDocsTemplate({ children, data }) {
   const { mdx, componentMetadata } = data;
 
   return (
-    <MDXProvider components={{}}>
+    <MDXProvider components={{ pre: Playground }}>
       <Layout>
         <SEO title={componentMetadata.displayName} />
         {children}
