@@ -1,9 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Documentation Starter',
-    description:
-      'Automatically generate docs for React components using MDX, react-docgen, and GatsbyJS',
-    siteUrl: '#',
+    title: 'Design System Documentation',
+    description: 'A basic documentation for the design system using Gatsby',
     sidebar: {
       pages: [
         {
@@ -14,32 +12,27 @@ module.exports = {
     },
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
+    'gatsby-plugin-react-helmet',
     {
-      resolve: `gatsby-mdx`,
+      resolve: 'gatsby-mdx',
       options: {
         defaultLayouts: {
-          posts: require.resolve('./src/templates/posts.js'),
-          default: require.resolve('./src/templates/page-default.js'),
+          default: require.resolve('./src/components/page-default.js'),
+          components: require.resolve('./src/components/page-docs-template.js'),
         },
       },
     },
-    `gatsby-plugin-sharp`,
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `components`,
-        path: `../src/components/`,
+        name: 'components',
+        path: '../src/components',
       },
     },
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     name: `img`,
-    //     path: `${__dirname}/src/assets/img/`,
-    //   },
-    // },
-    `gatsby-transformer-sharp`,
+    'gatsby-transformer-react-docgen',
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
+    'gatsby-plugin-styled-components',
     // {
     //   resolve: `gatsby-transformer-remark`,
     //   options: {
@@ -79,46 +72,5 @@ module.exports = {
     //     ],
     //   },
     // },
-    // {
-    //   resolve: `gatsby-plugin-manifest`,
-    //   options: {
-    //     name: 'Design System - The Source of Truth',
-    //     short_name: 'Design System',
-    //     start_url: '/',
-    //     background_color: '#F5F5F5',
-    //     theme_color: '#005CDD',
-    //     display: 'minimal-ui',
-    //     icons: [
-    //       {
-    //         // Everything in /static will be copied to an equivalent
-    //         // directory in /public during development and build, so
-    //         // assuming your favicons are in /static/favicons,
-    //         // you can reference them here
-    //         src: `/assets/favicons/android-chrome-192x192.png`,
-    //         sizes: `192x192`,
-    //         type: `image/png`,
-    //       },
-    //       {
-    //         src: `/assets/favicons/android-chrome-512x512.png`,
-    //         sizes: `512x512`,
-    //         type: `image/png`,
-    //       },
-    //     ],
-    //   },
-    // },
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: '#',
-        // Puts tracking script in the head instead of the body
-        head: false,
-        // Setting this parameter is optional
-        anonymize: true,
-        // Setting this parameter is also optional
-        respectDNT: true,
-      },
-    },
-    `gatsby-transformer-react-docgen`,
-    `gatsby-plugin-offline`,
   ],
-}
+};

@@ -1,11 +1,12 @@
-import React from 'react'
-import { Link } from 'gatsby'
+import React from 'react';
 
-import Layout from '../components/layout'
+import SEO from '../components/seo';
+import Layout from '../components/layout';
 
-const AboutPage = ({ data }) => (
-  <Layout>
-    <div className="content">
+function About() {
+  return (
+    <Layout>
+      <SEO title="About" />
       <h1>About the Design System</h1>
       <h3>A boilerplate for creating superb style guides</h3>
       <p>
@@ -14,9 +15,8 @@ const AboutPage = ({ data }) => (
         for, and how to get started with it. Like any good index page, it should
         provide clear navigation to key parts of the website.
       </p>
-      <button className="btn">Learn more</button>
-    </div>
-  </Layout>
-)
+    </Layout>
+  );
+}
 
-export default AboutPage
+export default About;

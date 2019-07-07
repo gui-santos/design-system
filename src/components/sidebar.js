@@ -1,25 +1,45 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import capitalize from '../tools/capitalize'
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { Link } from 'gatsby';
 
-const Sidebar = ({ active, components, sidebarPages }) => (
-  <nav className={`Sidebar ${active ? 'visible' : ''}`}>
-    {sidebarPages
-      ? sidebarPages.map(sidebarPage => (
-        <Link to={sidebarPage.slug}>{capitalize(sidebarPage.title)}</Link>
-        ))
-      : ''}
-    <strong>Components:</strong>
-    {components
-      ? components.map(component => (
-        <Link
-          to={`${component.node.frontmatter.menu.toLowerCase()}/${component.node.parent.name.toLowerCase()}`}
-        >
-          {capitalize(component.node.parent.name)}
-        </Link>
-        ))
-      : ''}
-  </nav>
-)
+const Nav = styled.nav`
+  width: 250px;
+  background-color: #fff;
+  border-right: 1px solid #dadada;
+  padding: 1rem 2rem;
+`;
 
-export default Sidebar
+function Sidebar({ components, sidebarLinks }) {
+  return (
+    <Nav>
+      {sidebarLinks.map((sidebarPage, idx) => (
+        <div key={idx}>
+          <Link to={sidebarPage.slug}>{sidebarPage.title}</Link>
+        </div>
+      ))}
+
+      <strong>Components:</strong>
+      {components.map(({ node: { id, frontmatter } }) => (
+        <div key={id}>
+          <Link
+            to={`${frontmatter.menu.toLowerCase()}/${frontmatter.name.toLowerCase()}`}
+          >
+            {frontmatter.name}
+          </Link>
+        </div>
+      ))}
+    </Nav>
+  );
+}
+
+Sidebar.propTypes = {
+  components: PropTypes.arrayOf(PropTypes.object).isRequired,
+  sidebarLinks: PropTypes.arrayOf(PropTypes.object),
+};
+
+Sidebar.defaultProps = {
+  sidebarLinks: [],
+};
+
+export default Sidebar;

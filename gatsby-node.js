@@ -4,11 +4,11 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-const path = require('path')
-const componentWithMDXScope = require('gatsby-mdx/component-with-mdx-scope')
+const path = require('path');
+const componentWithMDXScope = require('gatsby-mdx/component-with-mdx-scope');
 
 exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage } = actions;
   return new Promise((resolve, reject) => {
     resolve(
       graphql(
@@ -39,24 +39,27 @@ exports.createPages = ({ graphql, actions }) => {
         `
       ).then(result => {
         if (result.errors) {
-          console.log(result.errors)
-          reject(result.errors)
+          console.log(result.errors);
+          reject(result.errors);
         }
-        // Create blog posts pages.
+
         result.data.allMdx.edges.forEach(async ({ node }) => {
+          const {
+            id,
+            frontmatter: { name, menu },
+            code,
+          } = node;
+
           createPage({
-            path: `/${node.frontmatter.menu.toLowerCase()}/${node.parent.name.toLowerCase()}`,
+            path: `/${menu.toLowerCase()}/${name.toLowerCase()}`,
             component: componentWithMDXScope(
-              path.resolve('./src/templates/posts.js'),
-              node.code.scope
+              path.resolve('./src/components/page-docs-template.js'),
+              code.scope
             ),
-            context: {
-              id: node.id,
-              name: node.frontmatter.name,
-            },
-          })
-        })
+            context: { id, name },
+          });
+        });
       })
-    )
-  })
-}
+    );
+  });
+};
