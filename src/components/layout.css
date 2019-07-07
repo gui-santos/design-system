@@ -6,7 +6,7 @@ html {
 body {
   margin: 0;
   font-family: 'Helvetica', sans-serif;
-  font-weight: normal;
+  font-weight: lighter;
   font-size: 16px;
   line-height: 1.5;
   color: #1a1a1a;
@@ -77,11 +77,6 @@ strong {
 
 dfn {
   font-style: italic;
-}
-
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
 }
 
 mark {
@@ -257,42 +252,42 @@ img {
 h1 {
   margin: 0;
   padding: 0;
-  font-weight: bold;
+  font-weight: normal;
   font-size: 2rem;
 }
 
 h2 {
   margin: 0;
   padding: 0;
-  font-weight: bold;
+  font-weight: normal;
   font-size: 1.5rem;
 }
 
 h3 {
   margin: 0;
   padding: 0;
-  font-weight: bold;
+  font-weight: normal;
   font-size: 1.125rem;
 }
 
 h4 {
   margin: 0;
   padding: 0;
-  font-weight: bold;
+  font-weight: normal;
   font-size: 0.875rem;
 }
 
 h5 {
   margin: 0;
   padding: 0;
-  font-weight: bold;
+  font-weight: normal;
   font-size: 0.75rem;
 }
 
 h6 {
   margin: 0;
   padding: 0;
-  font-weight: bold;
+  font-weight: normal;
   font-size: 0.625rem;
 }
 
@@ -617,6 +612,7 @@ table th {
 }
 table tbody td {
   font-size: 0.875rem;
+  font-weight: lighter;
 }
 table tbody tr:nth-child(odd) {
   background: #f3f3f3;
@@ -627,6 +623,6 @@ table thead {
 }
 table thead th {
   font-size: 0.875rem;
-  font-weight: bold;
+  font-weight: normal;
   color: #1a1a1a;
 }

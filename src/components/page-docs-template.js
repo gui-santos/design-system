@@ -3,8 +3,9 @@ import { graphql } from 'gatsby';
 import MDXRenderer from 'gatsby-mdx/mdx-renderer';
 import { MDXProvider } from '@mdx-js/tag';
 
+import SEO from './seo';
 import Layout from './layout';
-import PropsTable from './PropsTable';
+import Table from './PropsTable/Table';
 
 function PageDocsTemplate({ children, data }) {
   const { mdx, componentMetadata } = data;
@@ -12,16 +13,17 @@ function PageDocsTemplate({ children, data }) {
   return (
     <MDXProvider components={{}}>
       <Layout>
-        <div className="content">
-          {children}
-          <h1>{componentMetadata.displayName}</h1>
-          <p>{componentMetadata.docblock}</p>
-          <MDXRenderer tableOfContents={mdx.tableOfContents}>
-            {mdx.code.body}
-          </MDXRenderer>
-          <h2 style={{ marginTop: '2rem' }}>Props:</h2>
-          <PropsTable propMetaData={componentMetadata.childrenComponentProp} />
-        </div>
+        <SEO title={componentMetadata.displayName} />
+        {children}
+
+        <h2>{componentMetadata.displayName}</h2>
+        <p>{componentMetadata.docblock}</p>
+
+        <MDXRenderer tableOfContents={mdx.tableOfContents}>
+          {mdx.code.body}
+        </MDXRenderer>
+
+        <Table propsData={componentMetadata.childrenComponentProp} />
       </Layout>
     </MDXProvider>
   );

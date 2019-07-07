@@ -7,7 +7,7 @@ const Nav = styled.nav`
   width: 250px;
   background-color: #fff;
   border-right: 1px solid #dadada;
-  padding: 1rem 2rem;
+  padding: 2rem;
 `;
 
 function Sidebar({ components, sidebarLinks }) {

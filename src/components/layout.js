@@ -36,13 +36,14 @@ const layoutQuery = graphql`
 
 const ContentWrapper = styled.div`
   display: flex;
-  height: calc(100vh - 56px);
+  min-height: calc(100vh - 56px);
 `;
 
 const Content = styled.div`
   margin: 0 auto;
-  padding: 1rem;
+  padding: 2rem 1rem;
   max-width: 960px;
+  flex-grow: 1;
 `;
 
 function Layout({ children }) {
