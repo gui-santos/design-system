@@ -7,7 +7,9 @@
     "build": "gatsby build",
     "dev": "gatsby develop",
     "format": "prettier --write '**/*.js'",
-    "test": "jest"
+    "test": "jest",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.0.21",
@@ -33,7 +35,14 @@
     "styled-components": "^4.3.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.5.0",
+    "@storybook/addon-actions": "^5.1.9",
+    "@storybook/addon-console": "^1.1.1",
+    "@storybook/addon-links": "^5.1.9",
+    "@storybook/addons": "^5.1.9",
+    "@storybook/react": "^5.1.9",
     "babel-jest": "^24.8.0",
+    "babel-loader": "^8.0.6",
     "babel-preset-gatsby": "^0.2.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.8.0",
