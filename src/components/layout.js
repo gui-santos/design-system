@@ -41,7 +41,7 @@ const ContentWrapper = styled.div`
 
 const Content = styled.div`
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 3rem 1rem 6rem;
   max-width: 960px;
   flex-grow: 1;
 `;
