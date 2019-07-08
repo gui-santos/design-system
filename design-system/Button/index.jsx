@@ -2,13 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import { colors } from '../_constants';
 import { getButtonSizeStyles, getButtonModeStyles } from './buttonHelpers';
 
 const ButtonStyles = styled.button`
   border-radius: 2px;
-  border: 2px solid red;
+  border: 1px solid ${colors.primary};
   padding: 0.5em 1em;
   cursor: pointer;
+  outline: none;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   ${props => getButtonSizeStyles(props.size)}
   ${props => getButtonModeStyles(props.mode)}
 `;
