@@ -1,46 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 
+// imported components for react-live scope
 import Button from '../../../design-system/Button';
 
-function PlaygroundControllers({ dataProps }) {
-  return (
-    <form>
-      {dataProps.map((prop, idx) => {
-        if (prop.type.name === 'enum') {
-          return (
-            <label key={idx} htmlFor={prop.name}>
-              {prop.name}
-              <select id={prop.name} defaultValue={prop.defaultValue.value}>
-                {prop.type.value.map((option, idx) => (
-                  <option key={idx} value={option.value}>
-                    {option.value}
-                  </option>
-                ))}
-              </select>
-            </label>
-          );
-        }
+import PlaygroundControllers from './PlaygroundControllers';
 
-        return undefined;
-      })}
-    </form>
-  );
-}
+function Playground({
+  mdxProps,
+  componentMetadata: { childrenComponentProp, displayName },
+}) {
+  const [editedProps, setEditedProps] = useState({});
 
-function Playground({ mdxProps, dataProps }) {
-  const componentInfo = mdxProps.children.props;
+  const {
+    props: { children, className },
+  } = mdxProps.children;
 
-  const isJsxDoc =
-    componentInfo.children && componentInfo.className === 'language-.jsx';
+  const transformCode = code => {
+    // get a string with the props changed by the user
+    const newProps = Object.keys(editedProps).reduce(
+      (str, key) => `${str} ${key}="${editedProps[key]}"`,
+      ''
+    );
 
-  console.log({ mdxProps, dataProps });
+    // inject the new props into the code to be previewed
+    return code.replace(
+      new RegExp(`<${displayName}`, 'g'),
+      `<${displayName}${newProps}`
+    );
+  };
 
-  return isJsxDoc ? (
+  return children && className === 'language-.jsx' ? (
     <>
-      <PlaygroundControllers dataProps={dataProps} />
-      <LiveProvider code={componentInfo.children} scope={{ Button }}>
+      <PlaygroundControllers
+        componentProps={childrenComponentProp}
+        editedProps={editedProps}
+        handleSetEditedProps={setEditedProps}
+      />
+      <LiveProvider
+        code={children}
+        transformCode={transformCode}
+        scope={{ Button }}
+        disabled
+      >
         <LivePreview />
         <LiveEditor />
         <LiveError />
@@ -53,11 +56,7 @@ function Playground({ mdxProps, dataProps }) {
 
 Playground.propTypes = {
   mdxProps: PropTypes.object.isRequired,
-  dataProps: PropTypes.arrayOf(PropTypes.object),
-};
-
-Playground.defaultProps = {
-  dataProps: [],
+  componentMetadata: PropTypes.object.isRequired,
 };
 
 export default Playground;

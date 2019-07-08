@@ -8,8 +8,8 @@ import Layout from './layout';
 import Table from './PropsTable/Table';
 import Playground from './Playground';
 
-const renderPlayground = (mdxProps, dataProps) => (
-  <Playground mdxProps={mdxProps} dataProps={dataProps} />
+const getPlayground = (mdxProps, componentMetadata) => (
+  <Playground mdxProps={mdxProps} componentMetadata={componentMetadata} />
 );
 
 function PageDocsTemplate({ children, data }) {
@@ -18,8 +18,7 @@ function PageDocsTemplate({ children, data }) {
   return (
     <MDXProvider
       components={{
-        pre: mdxProps =>
-          renderPlayground(mdxProps, componentMetadata.childrenComponentProp),
+        pre: mdxProps => getPlayground(mdxProps, componentMetadata),
       }}
     >
       <Layout>
