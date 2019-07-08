@@ -1,23 +1,63 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 
-import Button from '../../../../src/components/Button';
+import Button from '../../../design-system/Button';
 
-// const scope = { styled, Button };
+function PlaygroundControllers({ dataProps }) {
+  return (
+    <form>
+      {dataProps.map((prop, idx) => {
+        if (prop.type.name === 'enum') {
+          return (
+            <label key={idx} htmlFor={prop.name}>
+              {prop.name}
+              <select id={prop.name} defaultValue={prop.defaultValue.value}>
+                {prop.type.value.map((option, idx) => (
+                  <option key={idx} value={option.value}>
+                    {option.value}
+                  </option>
+                ))}
+              </select>
+            </label>
+          );
+        }
 
-function Playground(props) {
-  const componentInfo = props.children.props;
-
-  return componentInfo.children &&
-    componentInfo.className === 'language-.jsx' ? (
-    <LiveProvider code={componentInfo.children} scope={{ Button }}>
-      <LiveEditor />
-      <LiveError />
-      <LivePreview />
-    </LiveProvider>
-  ) : (
-    <pre {...props} />
+        return undefined;
+      })}
+    </form>
   );
 }
+
+function Playground({ mdxProps, dataProps }) {
+  const componentInfo = mdxProps.children.props;
+
+  const isJsxDoc =
+    componentInfo.children && componentInfo.className === 'language-.jsx';
+
+  console.log({ mdxProps, dataProps });
+
+  return isJsxDoc ? (
+    <>
+      <PlaygroundControllers dataProps={dataProps} />
+      <LiveProvider code={componentInfo.children} scope={{ Button }}>
+        <LivePreview />
+        <LiveEditor />
+        <LiveError />
+      </LiveProvider>
+    </>
+  ) : (
+    <pre {...mdxProps} />
+  );
+}
+
+Playground.propTypes = {
+  mdxProps: PropTypes.object.isRequired,
+  dataProps: PropTypes.arrayOf(PropTypes.object),
+};
+
+Playground.defaultProps = {
+  dataProps: [],
+};
 
 export default Playground;

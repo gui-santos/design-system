@@ -25,7 +25,7 @@ const DescriptionCol = styled.th`
   width: 50%;
 `;
 
-function Table({ propsData }) {
+function Table({ dataProps }) {
   return (
     <>
       <TableTitle>Props</TableTitle>
@@ -40,7 +40,7 @@ function Table({ propsData }) {
         </thead>
 
         <tbody>
-          {propsData.map(prop => (
+          {dataProps.map(prop => (
             <TableRow key={prop.name} prop={prop} />
           ))}
         </tbody>
@@ -50,11 +50,11 @@ function Table({ propsData }) {
 }
 
 Table.propTypes = {
-  propsData: PropTypes.arrayOf(PropTypes.object),
+  dataProps: PropTypes.arrayOf(PropTypes.object),
 };
 
 Table.defaultProps = {
-  propsData: [],
+  dataProps: [],
 };
 
 export default Table;

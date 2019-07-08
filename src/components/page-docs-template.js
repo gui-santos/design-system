@@ -8,11 +8,20 @@ import Layout from './layout';
 import Table from './PropsTable/Table';
 import Playground from './Playground';
 
+const renderPlayground = (mdxProps, dataProps) => (
+  <Playground mdxProps={mdxProps} dataProps={dataProps} />
+);
+
 function PageDocsTemplate({ children, data }) {
   const { mdx, componentMetadata } = data;
 
   return (
-    <MDXProvider components={{ pre: Playground }}>
+    <MDXProvider
+      components={{
+        pre: mdxProps =>
+          renderPlayground(mdxProps, componentMetadata.childrenComponentProp),
+      }}
+    >
       <Layout>
         <SEO title={componentMetadata.displayName} />
         {children}
@@ -24,7 +33,7 @@ function PageDocsTemplate({ children, data }) {
           {mdx.code.body}
         </MDXRenderer>
 
-        <Table propsData={componentMetadata.childrenComponentProp} />
+        <Table dataProps={componentMetadata.childrenComponentProp} />
       </Layout>
     </MDXProvider>
   );
