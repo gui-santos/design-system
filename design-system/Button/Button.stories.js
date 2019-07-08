@@ -18,12 +18,17 @@ storiesOf('Button', module)
     </Button>
   ))
   .add('Small', () => (
-    <Button handleClick={handleClick} mode="primary" size="small">
+    <Button handleClick={handleClick} size="small">
       Small Button
     </Button>
   ))
   .add('Big', () => (
-    <Button handleClick={handleClick} mode="primary" size="big">
+    <Button handleClick={handleClick} size="big">
       Big Button
+    </Button>
+  ))
+  .add('Fluid', () => (
+    <Button handleClick={handleClick} fluid>
+      Fluid Button
     </Button>
   ));
