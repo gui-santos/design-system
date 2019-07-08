@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { colors } from '../_constants';
+import { colors, getFontStyles } from '../_constants';
 import { getButtonSizeStyles, getButtonModeStyles } from './buttonHelpers';
 
 const ButtonStyles = styled.button`
@@ -12,6 +12,7 @@ const ButtonStyles = styled.button`
   cursor: pointer;
   outline: none;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  ${getFontStyles('lighter')}
   ${props => props.fluid && 'width: 100%;'}
   ${props => getButtonSizeStyles(props.size)}
   ${props => getButtonModeStyles(props.mode)}
