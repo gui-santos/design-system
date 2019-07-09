@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 // imported components for react-live scope
 import Button from '../../../design-system/Button';
+import Checkbox from '../../../design-system/Checkbox';
 
 import PlaygroundControllers from './PlaygroundControllers';
 
@@ -43,7 +44,7 @@ function Playground({
   const transformCode = code => {
     // get a string with the props changed by the user
     const newProps = Object.keys(editedProps).reduce(
-      (str, key) => `${str} ${key}="${editedProps[key]}"`,
+      (str, key) => `${str} ${key}=${editedProps[key]}`,
       ''
     );
 
@@ -59,11 +60,11 @@ function Playground({
       <LiveWrapper>
         <LiveProvider
           code={transformCode(children)}
-          scope={{ Button }}
+          scope={{ Button, Checkbox }}
           theme={dracula}
         >
           <PreviewWrapper>
-            <LivePreview />
+            <LivePreview Component={React.Fragment} />
           </PreviewWrapper>
           <LiveEditor />
           <LiveError />
