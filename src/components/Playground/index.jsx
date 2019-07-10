@@ -42,14 +42,23 @@ function Playground({
   } = mdxProps.children;
 
   const transformCode = code => {
+    let newCode = code;
     // get a string with the props changed by the user
     const newProps = Object.keys(editedProps).reduce(
       (str, key) => `${str} ${key}=${editedProps[key]}`,
       ''
     );
 
+    // remove duplicated prop
+    if (Object.keys(editedProps).length > 0) {
+      Object.keys(editedProps).forEach(key => {
+        const regex = new RegExp(`${key}=("|{).+("|})`, 'g');
+        newCode = newCode.replace(regex, '');
+      });
+    }
+
     // inject the new props into the code to be previewed
-    return code.replace(
+    return newCode.replace(
       new RegExp(`<${displayName}`, 'g'),
       `<${displayName}${newProps}`
     );
