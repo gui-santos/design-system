@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import EnumController from './EnumController';
 import Checkbox from '../../../design-system/Checkbox';
 import TextInput from '../../../design-system/TextInput';
+
+const Form = styled.form`
+  padding: 2rem 0;
+`;
 
 function getPropsController(prop, handleChange, idx) {
   switch (prop.type.name) {
@@ -54,11 +59,11 @@ function PlaygroundControllers({
   };
 
   return (
-    <form>
+    <Form>
       {componentProps.map((prop, idx) =>
         getPropsController(prop, handleChange, idx)
       )}
-    </form>
+    </Form>
   );
 }
 

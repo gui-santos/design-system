@@ -4,7 +4,6 @@ import { StaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 
 import './layout.css';
-import Header from './header';
 import Sidebar from './sidebar';
 
 const layoutQuery = graphql`
@@ -41,7 +40,7 @@ const ContentWrapper = styled.div`
 
 const Content = styled.div`
   margin: 0 auto;
-  padding: 3rem 1rem 6rem;
+  padding: 6rem 1rem;
   max-width: 960px;
   flex-grow: 1;
 `;
@@ -57,16 +56,13 @@ function Layout({ children }) {
   return (
     <StaticQuery query={layoutQuery}>
       {({ site, allMdx }) => (
-        <>
-          <Header siteTitle={site.siteMetadata.title} />
-          <ContentWrapper>
-            <Sidebar
-              components={filterAllMdx(allMdx.edges)}
-              sidebarLinks={site.siteMetadata.sidebar.pages}
-            />
-            <Content>{children}</Content>
-          </ContentWrapper>
-        </>
+        <ContentWrapper>
+          <Sidebar
+            components={filterAllMdx(allMdx.edges)}
+            siteMetadata={site.siteMetadata}
+          />
+          <Content>{children}</Content>
+        </ContentWrapper>
       )}
     </StaticQuery>
   );

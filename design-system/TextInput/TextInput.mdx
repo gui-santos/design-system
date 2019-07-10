@@ -8,5 +8,5 @@ menu: Components
 Check how to use and code the TextInput with its different props
 
 ```.jsx
-<TextInput label="This is a text input" placeholder="e.g This is a placeholder" handleChange={handleChange} />
+<TextInput label="This is a text input" placeholder="e.g This is a placeholder" handleChange={value => console.log(value.target.value)} />
 ```

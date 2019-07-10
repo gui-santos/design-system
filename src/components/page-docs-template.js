@@ -25,7 +25,7 @@ function PageDocsTemplate({ children, data }) {
         <SEO title={componentMetadata.displayName} />
         {children}
 
-        <h2>{componentMetadata.displayName}</h2>
+        <h1>{componentMetadata.displayName}</h1>
         <p>{componentMetadata.docblock}</p>
 
         <MDXRenderer tableOfContents={mdx.tableOfContents}>
