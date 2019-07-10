@@ -23,7 +23,7 @@ function Sidebar({ components, sidebarLinks }) {
       {components.map(({ node: { id, frontmatter } }) => (
         <div key={id}>
           <Link
-            to={`${frontmatter.menu.toLowerCase()}/${frontmatter.name.toLowerCase()}`}
+            to={`/${frontmatter.menu.toLowerCase()}/${frontmatter.name.toLowerCase()}`}
           >
             {frontmatter.name}
           </Link>
