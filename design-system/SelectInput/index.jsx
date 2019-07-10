@@ -7,14 +7,13 @@ import { getFontStyles } from '../_constants';
 
 const Wrapper = styled.div`
   ${getFontStyles('lighter')}
-  font-size: 16px;
-  margin-bottom: 16px;
+  font-size: 0.75rem;
+  margin-bottom: 1rem;
 `;
 
 const Label = styled.label`
   display: block;
-  font-size: 14px;
-  margin-bottom: 8px;
+  margin-bottom: 0.25rem;
 `;
 
 /**
@@ -41,7 +40,9 @@ SelectInput.propTypes = {
   /** Defines the label of input */
   label: PropTypes.string.isRequired,
   /** Defines the options of the select input */
-  options: PropTypes.arrayOf(PropTypes.object).isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({ value: PropTypes.string, label: PropTypes.string })
+  ).isRequired,
   /** Defines the default value of the select input */
   default: PropTypes.object,
 };

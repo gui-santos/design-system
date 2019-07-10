@@ -34,10 +34,10 @@ export function getButtonModeStyles(mode) {
 export function getButtonSizeStyles(size) {
   switch (size) {
     case 'big':
-      return `font-size: 24px;`;
+      return `font-size: 1.5rem;`;
     case 'regular':
-      return `font-size: 16px;`;
+      return `font-size: 1rem;`;
     default:
-      return `font-size: 12px;`;
+      return `font-size: 0.75rem;`;
   }
 }

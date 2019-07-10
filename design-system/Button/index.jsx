@@ -8,7 +8,7 @@ import { getButtonSizeStyles, getButtonModeStyles } from './buttonHelpers';
 const ButtonStyles = styled.button`
   border-radius: 2px;
   border: 1px solid ${colors.primary};
-  padding: 0.75em 1em;
+  padding: 0.75rem 1rem;
   cursor: pointer;
   outline: none;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
