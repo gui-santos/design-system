@@ -7,7 +7,7 @@ import { colors, getFontStyles } from '../_constants';
 const Wrapper = styled.label`
   ${getFontStyles('lighter')}
   height: 18px;
-  font-size: 14px;
+  font-size: 0.75rem;
   display: block;
   position: relative;
   padding-left: 25px;
@@ -65,11 +65,7 @@ const CheckMark = styled.span`
 function Checkbox(props) {
   return (
     <Wrapper>
-      <Input
-        type="checkbox"
-        value={props.value}
-        onChange={props.handleChange}
-      />
+      <Input type="checkbox" onChange={props.handleChange} />
       <CheckMark />
       {props.label}
     </Wrapper>
@@ -79,8 +75,6 @@ function Checkbox(props) {
 Checkbox.propTypes = {
   /** Defines the label that will name the checkbox */
   label: PropTypes.string.isRequired,
-  /** Defines the value of the checkbox */
-  value: PropTypes.string.isRequired,
   /** Defines the function that will be called when the user clicks in the checkbox */
   handleChange: PropTypes.func.isRequired,
 };
