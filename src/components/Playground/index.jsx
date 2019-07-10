@@ -7,7 +7,9 @@ import styled from 'styled-components';
 // imported components for react-live scope
 import Button from '../../../design-system/Button';
 import Checkbox from '../../../design-system/Checkbox';
+import TextInput from '../../../design-system/TextInput';
 
+import { transformCode } from './playgroundHelpers';
 import PlaygroundControllers from './PlaygroundControllers';
 
 const Grid = styled.div`
@@ -33,7 +35,7 @@ const PreviewWrapper = styled.div`
 
 function Playground({
   mdxProps,
-  componentMetadata: { childrenComponentProp, displayName },
+  componentMetadata: { childrenComponentProp },
 }) {
   const [editedProps, setEditedProps] = useState({});
 
@@ -41,35 +43,12 @@ function Playground({
     props: { children, className },
   } = mdxProps.children;
 
-  const transformCode = code => {
-    let newCode = code;
-    // get a string with the props changed by the user
-    const newProps = Object.keys(editedProps).reduce(
-      (str, key) => `${str} ${key}=${editedProps[key]}`,
-      ''
-    );
-
-    // remove duplicated prop
-    if (Object.keys(editedProps).length > 0) {
-      Object.keys(editedProps).forEach(key => {
-        const regex = new RegExp(`${key}=("|{).+("|})`, 'g');
-        newCode = newCode.replace(regex, '');
-      });
-    }
-
-    // inject the new props into the code to be previewed
-    return newCode.replace(
-      new RegExp(`<${displayName}`, 'g'),
-      `<${displayName}${newProps}`
-    );
-  };
-
   return children && className === 'language-.jsx' ? (
     <Grid>
       <LiveWrapper>
         <LiveProvider
-          code={transformCode(children)}
-          scope={{ Button, Checkbox }}
+          code={transformCode(children, editedProps)}
+          scope={{ Button, Checkbox, TextInput }}
           theme={dracula}
         >
           <PreviewWrapper>

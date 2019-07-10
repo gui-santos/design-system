@@ -3,15 +3,15 @@ import { getButtonSizeStyles, getButtonModeStyles } from './buttonHelpers';
 
 describe('Get button styles based on SIZE', () => {
   test('return the styles for a BIG button', () => {
-    expect(getButtonSizeStyles('big')).toBe('font-size: 24px;');
+    expect(getButtonSizeStyles('big')).toBe('font-size: 1.5rem;');
   });
 
   test('return the styles for a REGULAR button', () => {
-    expect(getButtonSizeStyles('regular')).toBe('font-size: 16px;');
+    expect(getButtonSizeStyles('regular')).toBe('font-size: 1rem;');
   });
 
   test('return the styles for a SMALL button', () => {
-    expect(getButtonSizeStyles('small')).toBe('font-size: 12px;');
+    expect(getButtonSizeStyles('small')).toBe('font-size: 0.75rem;');
   });
 });
 
