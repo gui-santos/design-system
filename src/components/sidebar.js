@@ -19,7 +19,7 @@ function Sidebar({ components, sidebarLinks }) {
         </div>
       ))}
 
-      <strong>Components:</strong>
+      <strong>Components</strong>
       {components.map(({ node: { id, frontmatter } }) => (
         <div key={id}>
           <Link

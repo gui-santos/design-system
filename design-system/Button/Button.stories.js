@@ -10,25 +10,21 @@ const handleClick = () => console.log('clicked');
 storiesOf('Button', module)
   .addDecorator((storyFn, context) => withConsole()(storyFn)(context))
   .add('Primary', () => (
-    <Button handleClick={handleClick}>Primary Button</Button>
+    <Button handleClick={handleClick} value="Primary Button" />
   ))
   .add('Secondary', () => (
-    <Button handleClick={handleClick} mode="secondary">
-      Secondary Button
-    </Button>
+    <Button
+      handleClick={handleClick}
+      value="Secodnary Button"
+      mode="secondary"
+    />
   ))
   .add('Small', () => (
-    <Button handleClick={handleClick} size="small">
-      Small Button
-    </Button>
+    <Button handleClick={handleClick} value="Small Button" size="small" />
   ))
   .add('Big', () => (
-    <Button handleClick={handleClick} size="big">
-      Big Button
-    </Button>
+    <Button handleClick={handleClick} value="Big Button" size="big" />
   ))
   .add('Fluid', () => (
-    <Button handleClick={handleClick} fluid>
-      Fluid Button
-    </Button>
+    <Button handleClick={handleClick} value="Fluid Button" fluid />
   ));

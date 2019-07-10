@@ -30,12 +30,14 @@ function Button(props) {
       size={props.size}
       fluid={props.fluid}
     >
-      {props.children}
+      {props.value}
     </ButtonStyles>
   );
 }
 
 Button.propTypes = {
+  /** Defines the label of the button */
+  value: PropTypes.string.isRequired,
   /** Defines the function that will be called when the user's click the button */
   handleClick: PropTypes.func.isRequired,
   /** Defines what is the type of the button */
