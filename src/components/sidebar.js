@@ -31,6 +31,7 @@ const Nav = styled.nav`
   & strong {
     display: block;
     font-size: 0.75rem;
+    color: #dadada;
     margin-bottom: 0.5rem;
   }
 `;

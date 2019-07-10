@@ -14,3 +14,19 @@ yarn dev
 ```
 
 Go to http://localhost:8000
+
+## Storybook
+
+To develop the components independently, I used Storybook. To check all the stories, just run:
+
+```
+yarn storybook
+```
+
+## Unit tests
+
+To check the unit tests implemented, run:
+
+```
+yarn test
+```

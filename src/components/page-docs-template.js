@@ -8,17 +8,18 @@ import Layout from './layout';
 import Table from './PropsTable/Table';
 import Playground from './Playground';
 
-const getPlayground = (mdxProps, componentMetadata) => (
-  <Playground mdxProps={mdxProps} componentMetadata={componentMetadata} />
-);
-
 function PageDocsTemplate({ children, data }) {
   const { mdx, componentMetadata } = data;
 
   return (
     <MDXProvider
       components={{
-        pre: mdxProps => getPlayground(mdxProps, componentMetadata),
+        pre: mdxProps => (
+          <Playground
+            mdxProps={mdxProps}
+            componentMetadata={componentMetadata}
+          />
+        ),
       }}
     >
       <Layout>
