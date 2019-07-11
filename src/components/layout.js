@@ -35,7 +35,7 @@ const layoutQuery = graphql`
 
 const ContentWrapper = styled.div`
   display: flex;
-  min-height: calc(100vh - 56px);
+  min-height: 100vh;
 `;
 
 const Content = styled.div`
