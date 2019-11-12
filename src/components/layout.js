@@ -11,12 +11,6 @@ const layoutQuery = graphql`
     site {
       siteMetadata {
         title
-        sidebar {
-          pages {
-            slug
-            title
-          }
-        }
       }
     }
     allMdx {

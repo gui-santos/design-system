@@ -18,7 +18,12 @@ function IndexPage() {
         complete design-system but it shows the potential of this tool to
         generate documentation.
       </p>
-      <p>I hope you enjoy 😄</p>
+      <p>
+        I hope you enjoy{' '}
+        <span role="img" aria-label="smiley face">
+          😄
+        </span>
+      </p>
     </Layout>
   );
 }

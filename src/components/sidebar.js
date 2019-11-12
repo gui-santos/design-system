@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { Link } from 'gatsby';
 
 import { colors } from '../../design-system/_constants';
-import Header from './header';
 
 const Wrapper = styled.div`
   display: flex;
@@ -12,10 +11,20 @@ const Wrapper = styled.div`
   width: 250px;
 `;
 
+const HomeLink = styled.div`
+  padding-top: 6rem;
+  margin-bottom: 3rem;
+
+  & .homeLink {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+`;
+
 const Nav = styled.nav`
   background-color: #fff;
   border-right: 1px solid #dadada;
-  padding: 2rem;
+  padding: 0 2rem;
   height: 100%;
 
   & a {
@@ -29,7 +38,7 @@ const Nav = styled.nav`
     color: ${colors.primaryHover};
   }
   & strong {
-    display: block;
+    display: inline-block;
     font-size: 0.75rem;
     color: #dadada;
     margin-bottom: 0.5rem;
@@ -39,15 +48,13 @@ const Nav = styled.nav`
 function Sidebar({ components, siteMetadata }) {
   return (
     <Wrapper>
-      <Header siteTitle={siteMetadata.title} />
       <Nav>
-        {siteMetadata.sidebar.pages.map((sidebarPage, idx) => (
-          <div key={idx}>
-            <Link to={sidebarPage.slug}>{sidebarPage.title}</Link>
-          </div>
-        ))}
+        <HomeLink>
+          <Link className="homeLink" to="/">
+            {siteMetadata.title}
+          </Link>
+        </HomeLink>
 
-        <strong>Components</strong>
         {components.map(({ node: { id, frontmatter } }) => (
           <div key={id}>
             <Link

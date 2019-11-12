@@ -1,15 +1,15 @@
 module.exports = {
   siteMetadata: {
-    title: 'Design System Documentation',
+    title: 'UI Library Documentation',
     description: 'A basic documentation for the design system using Gatsby',
-    sidebar: {
-      pages: [
-        {
-          slug: '/',
-          title: 'Home',
-        },
-      ],
-    },
+    // sidebar: {
+    //   pages: [
+    //     {
+    //       slug: '/',
+    //       title: 'Home',
+    //     },
+    //   ],
+    // },
   },
   plugins: [
     'gatsby-plugin-react-helmet',

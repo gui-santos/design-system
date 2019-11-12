@@ -1,7 +1,7 @@
 export const colors = {
-  primary: '#e84600',
-  primaryHover: '#ff6e30',
-  secondaryHover: '#ffe4d8',
+  primary: '#563ad9',
+  primaryHover: '#5a61e1',
+  secondaryHover: '#e8e3ff',
   gray: '#887575',
   shadow: 'rgba(0, 0, 0, 0.35)',
 };
